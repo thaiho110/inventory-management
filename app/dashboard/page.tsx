@@ -30,11 +30,22 @@ export default async function DashboardPage() {
 
     ]);
     const totalValue = allProducts.reduce((sum, product) => sum + Number(product.price) * Number(product.quantity), 0);
+
+    const inStockCount = allProducts.filter(product => Number(product.quantity) > 10).length;
+    const lowStockCount = allProducts.filter(product => Number(product.quantity) <= 10 && Number(product.quantity) >=1).length;
+    const outOfStockCount = allProducts.filter(product => Number(product.quantity) === 0).length;
     
+    const inStockPercentage = totalProducts > 0 ? Math.round(inStockCount / allProducts.length) * 100 : 0;
+    const lowStockPercentage = totalProducts > 0 ? Math.round(lowStockCount / allProducts.length) * 100 : 0;
+    const outOfStockPercentage = totalProducts > 0 ? Math.round(outOfStockCount / allProducts.length) * 100 : 0;
+
+    
+    
+    const now = new Date();
     const weeklyProductData = [];
 
     for (let i = 11; i >= 0; i--) {
-        const weekStart = new Date();
+        const weekStart = new Date(now);
         weekStart.setDate(weekStart.getDate() - i * 7 );
         weekStart.setHours(0, 0, 0, 0);
 
@@ -132,6 +143,53 @@ export default async function DashboardPage() {
                                     </div>
                                 );
                             })}
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-lg text-gray-900 font-bold">In Stock Percentage</h2>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <div className="relative w-48 h-48">
+                                <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
+                                <div
+                                    className="absolute inset-0 rounded-full"
+                                    style={{
+                                        background: `conic-gradient(#10B981 ${Math.max(
+                                            0,
+                                            Math.min(100, inStockPercentage)
+                                        )}%, #E5E7EB ${Math.max(0, Math.min(100, inStockPercentage))}% 100%)`,
+                                    }}
+                                />
+                                <div className="absolute inset-4 rounded-full bg-white" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="text-center">
+                                        <div className="text-2xl font-bold text-gray-900">{inStockPercentage} %</div> 
+                                        <div className="text-sm text-gray-600">In Stock</div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-6 space-y-2">
+                            <div className="flex items-center justify-between text-sm text-gray-600">
+                                <div className="flex items-center space-x-2">
+                                    <div className= "w-3 h-3 rounded-full bg-green-200"/>
+                                    <span>In Stock ({inStockPercentage})%</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between text-sm text-gray-600">
+                                <div className="flex items-center space-x-2">
+                                    <div className= "w-3 h-3 rounded-full bg-yellow-200"/>
+                                    <span>Low Stock ({lowStockPercentage})%</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between text-sm text-gray-600">
+                                <div className="flex items-center space-x-2">
+                                    <div className= "w-3 h-3 rounded-full bg-red-200"/>
+                                    <span>Out Of Stock ({outOfStockPercentage})%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
