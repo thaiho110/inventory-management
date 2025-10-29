@@ -11,16 +11,16 @@ export default function Sidebar({currentPath = "/dashboard"}: {currentPath: stri
             icon: BarChart3
         },
         {
-            name: "Products",
-            href: "/products",
-
-            icon: Package
-        },
-        {
             name: "Inventory",
             href: "/inventory",
 
             icon: Plus
+        },
+        {
+            name: "Products",
+            href: "/products",
+
+            icon: Package
         },
         {
             name: "Settings",
