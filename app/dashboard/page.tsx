@@ -31,13 +31,13 @@ export default async function DashboardPage() {
     ]);
     const totalValue = allProducts.reduce((sum, product) => sum + Number(product.price) * Number(product.quantity), 0);
 
-    const inStockCount = allProducts.filter(product => Number(product.quantity) > 10).length;
-    const lowStockCount = allProducts.filter(product => Number(product.quantity) <= 10 && Number(product.quantity) >=1).length;
+    const inStockCount = allProducts.filter(product => Number(product.quantity) > 5).length;
+    const lowStockCount = allProducts.filter(product => Number(product.quantity) <= 5 && Number(product.quantity) >=1).length;
     const outOfStockCount = allProducts.filter(product => Number(product.quantity) === 0).length;
     
-    const inStockPercentage = totalProducts > 0 ? Math.round(inStockCount / allProducts.length) * 100 : 0;
-    const lowStockPercentage = totalProducts > 0 ? Math.round(lowStockCount / allProducts.length) * 100 : 0;
-    const outOfStockPercentage = totalProducts > 0 ? Math.round(outOfStockCount / allProducts.length) * 100 : 0;
+    const inStockPercentage = totalProducts > 0 ? Math.round((inStockCount / allProducts.length) * 100) : 0;
+    const lowStockPercentage = totalProducts > 0 ? Math.round((lowStockCount / allProducts.length) * 100) : 0;
+    const outOfStockPercentage = totalProducts > 0 ? Math.round((outOfStockCount / allProducts.length) * 100) : 0;
 
     
     
@@ -154,7 +154,7 @@ export default async function DashboardPage() {
                             <div className="relative w-48 h-48">
                                 <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
                                 <div
-                                    className="absolute inset-0 rounded-full"
+                                    className={`absolute inset-0 rounded-full`}
                                     style={{
                                         background: `conic-gradient(#10B981 ${Math.max(
                                             0,
