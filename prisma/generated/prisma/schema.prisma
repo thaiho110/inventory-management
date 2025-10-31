@@ -1,0 +1,27 @@
+generator client {
+  provider      = "prisma-client-js"
+  seed          = "prisma/seed.ts"
+  output        = "../prisma/generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  engineType    = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id                String   @id @default(cuid())
+  userID            String
+  name              String
+  sku               String?  @unique
+  price             Decimal  @db.Decimal(12, 2)
+  quantity          Int      @default(0)
+  lowStockThreshold Int?     @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([userID, name])
+  @@index([createdAt])
+}
