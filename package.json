@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
+    "@prisma/nextjs-monorepo-workaround-plugin": "^6.18.0",
     "@stackframe/stack": "^2.8.39",
     "dotenv": "^17.2.3",
     "lucide-react": "^0.548.0",
