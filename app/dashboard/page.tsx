@@ -1,6 +1,5 @@
 import ProductCharts from "@/components/productcharts";
 import Sidebar from "@/components/sidebar";
-import { ProductData } from "@/lib/actions/products";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { DollarSign, TrendingUp } from "lucide-react";
@@ -30,11 +29,11 @@ export default async function DashboardPage() {
         }),
 
     ]);
-    const totalValue = allProducts.reduce((sum: number, product: ProductData) => sum + Number(product.price) * Number(product.quantity), 0);
+    const totalValue = allProducts.reduce((sum: number, product) => sum + Number(product.price) * Number(product.quantity), 0);
 
-    const inStockCount = allProducts.filter(product => Number(product.quantity) > 5).length;
-    const lowStockCount = allProducts.filter(product => Number(product.quantity) <= 5 && Number(product.quantity) >=1).length;
-    const outOfStockCount = allProducts.filter(product => Number(product.quantity) === 0).length;
+    const inStockCount = allProducts.filter((product) => Number(product.quantity) > 5).length;
+    const lowStockCount = allProducts.filter((product) => Number(product.quantity) <= 5 && Number(product.quantity) >=1).length;
+    const outOfStockCount = allProducts.filter((product) => Number(product.quantity) === 0).length;
     
     const inStockPercentage = totalProducts > 0 ? Math.round((inStockCount / allProducts.length) * 100) : 0;
     const lowStockPercentage = totalProducts > 0 ? Math.round((lowStockCount / allProducts.length) * 100) : 0;

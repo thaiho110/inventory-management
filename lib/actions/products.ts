@@ -5,13 +5,6 @@ import { getCurrentUser } from "../auth";
 import { prisma } from "../prisma";
 import { z } from "zod";
 
-export type ProductData = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    price: any;
-    quantity: number;
-    createdAt: Date;
-};
-
 const ProductSchema = z.object({
     name: z.string().min(1, "Name is required"),
     price: z.coerce.number().nonnegative("Price must not be negative"),
