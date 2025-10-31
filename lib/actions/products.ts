@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "../auth";
-import { prisma } from "../prisma";
 import { z } from "zod";
+import { prisma } from "../prisma";
 
 const ProductSchema = z.object({
     name: z.string().min(1, "Name is required"),
