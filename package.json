@@ -8,11 +8,11 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint"
-    
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@prisma/adapter-neon": "^6.18.0",
     "@prisma/client": "^6.18.0",
-    "@prisma/nextjs-monorepo-workaround-plugin": "^6.18.0",
     "@stackframe/stack": "^2.8.39",
     "dotenv": "^17.2.3",
     "lucide-react": "^0.548.0",
@@ -20,6 +20,8 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "recharts": "^3.3.0",
+    "websocket": "^1.0.35",
+    "ws": "^8.18.3",
     "zod": "^4.1.12"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ws": "^8.18.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "prisma": "^6.18.0",

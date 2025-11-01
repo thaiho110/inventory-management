@@ -2,7 +2,7 @@ import Pagination from '@/components/pagination';
 import Sidebar from '@/components/sidebar';
 import { deleteProduct} from '@/lib/actions/products';
 import { getCurrentUser } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import React from 'react'
 
 export default async function InventoryPage({searchParams}: {searchParams: Promise<{q?: string; page?: string}>}) {
