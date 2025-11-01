@@ -9,7 +9,7 @@ const ProductSchema = z.object({
     name: z.string().min(1, "Name is required"),
     price: z.coerce.number().nonnegative("Price must not be negative"),
     quantity: z.coerce.number().int().min(0, "Quantity must not be negative"),
-    sku: z.string().optional(),
+    sku: z.string().min(1,"SKU is required"),
     lowStockThreshold: z.coerce.number().int().min(0).optional()
 });
 
@@ -47,7 +47,7 @@ export async function createProduct(formData:FormData) {
         redirect("/inventory")
 
     } catch(error) {
-        throw new Error("Failed to create new Product")
+        console.log(error)
     }
 
 }

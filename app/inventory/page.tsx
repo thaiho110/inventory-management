@@ -14,7 +14,7 @@ export default async function InventoryPage({searchParams}: {searchParams: Promi
         const pageSize = 10;
     
     const page = Math.max(1, Number(params.page ?? 1));
-    const where = {userID, ...(q ? {name: {contains: q, mode: "insensitive" as const}}: {})};
+    const where = {userID, ...(q ? {OR: [{name: {contains: q, mode: "insensitive" as const}}, {sku: {contains: q, mode: "insensitive" as const}}]}: {})};
 
 
     const [totalCount, items] = await Promise.all([

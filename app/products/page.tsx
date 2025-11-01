@@ -66,11 +66,12 @@ export default async function AddProduct() {
                             </div>
                             <div>
                                 <label htmlFor="sku" className="block text-sm font-medium text-gray-700 mb-2">
-                                        SKU (Optional)
+                                        SKU
                                     </label>
                                     <input type="text"
                                             id="sku"
                                             name="sku"
+                                            required
                                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent"
                                             placeholder="Enter product SKU"
                                     />
