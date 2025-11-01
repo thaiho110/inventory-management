@@ -1,7 +1,7 @@
 import ProductCharts from "@/components/productcharts";
 import Sidebar from "@/components/sidebar";
 import { getCurrentUser } from "@/lib/auth";
-import prisma from "@/lib/prisma";
+import {prisma} from "@/lib/prisma";
 import { DollarSign, TrendingUp } from "lucide-react";
 
 export default async function DashboardPage() {
