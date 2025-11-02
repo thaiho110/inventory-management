@@ -13,7 +13,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { UserButton } from "@stackframe/stack";
-import { Toggle } from "@/components/ui/toggle"
 
 const navigation = [
         {
@@ -37,7 +36,7 @@ const navigation = [
     ];
 
 export function AppSidebar({pathname = "/"}:{pathname?: string}) {
-  
+
   return (
       <Sidebar side="left" variant="sidebar" collapsible="offcanvas">
         <SidebarHeader>
@@ -46,16 +45,6 @@ export function AppSidebar({pathname = "/"}:{pathname?: string}) {
               <ChartBar className="h-6 w-6"/>
               <span className="text-3xl font-semibold gap-2">IMS</span>
             </div>
-            <Toggle
-              aria-label="Toggle bookmark"
-              size="sm"
-              variant="outline"
-              className="rounded-full"
-              >
-                {
-
-                }
-              </Toggle>
             </div>
         </SidebarHeader>
         <SidebarContent>
