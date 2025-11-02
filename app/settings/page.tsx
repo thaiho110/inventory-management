@@ -1,4 +1,4 @@
-import Sidebar from "@/components/sidebar";
+
 import { getCurrentUser } from "@/lib/auth";
 import { AccountSettings } from "@stackframe/stack";
 
@@ -6,9 +6,8 @@ export default async function Settings() {
     const user = await getCurrentUser();
 
     return (
-       <div className="min-h-screen bg-gray-50">
-            <Sidebar currentPath="/settings"/>
-            <main className="ml-64 p-8">
+       <div className="min-h-screen max-w-full">
+            <main className="p-8 max-w-full">
                 <div className="mb-8">
                     <div className="flex items-center justify-between">
                         <div>
