@@ -2,12 +2,17 @@
 
 An inventory management app with basic management capabilities for users built with React 19, NextJS 15, TailwindCSS and Prisma 
 
+## Demo:
+
+Use the demo of the system [here](https://inventory-management-amber-seven.vercel.app/)
+
 ## Basic features:
 - Adding new products
 - Viewing products
 - Analytics
 
 The app is built using service from [Stack Auth](https://stack-auth.com/) for user authentication and management, storage is host on [NeonDB](https://neon.com/) with [Prisma](https://www.prisma.io/)
+
 
 ## 🚀 Quick Start
 
