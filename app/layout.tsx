@@ -6,6 +6,7 @@ import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import AppSidebarClient from "@/components/app-sidebar-client";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,24 +28,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
-
 
   return (
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          suppressHydrationWarning={true}
         >
-          <SidebarProvider>
-            <AppSidebarClient/>
-              <main>
-                <SidebarTrigger />
-                  <StackProvider app={stackClientApp}><StackTheme>
-                    {children}
-                    </StackTheme>
-                  </StackProvider>
-              </main>
-          </SidebarProvider>
+          <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          >
+            <StackProvider app={stackClientApp}>
+                <StackTheme>
+                  <SidebarProvider>
+                    <AppSidebarClient/>
+                    <main className="w-full">
+                      <SidebarTrigger />
+                        {children}
+                    </main>
+                  </SidebarProvider>
+                </StackTheme>
+              </StackProvider>
+          </ThemeProvider>
         </body>
       </html>
   );

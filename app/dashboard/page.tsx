@@ -71,20 +71,20 @@ export default async function DashboardPage() {
                 <div className="mb-8">
                     <div className="flex items-center justify-between">
                         <div>
-                            <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-                            <p className="text-sm text-gray-500">Welcome back! Here is the overview of your inventory</p>
+                            <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
+                            <p className="text-sm text-secondary-foreground">Welcome back! Here is the overview of your inventory</p>
                         </div>
                     </div>
                 </div>
                 {/* Key Metric */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-lg border border-gray-200 p-6">
                         
-                        <h2 className="text-lg text-gray-900 mb-6 font-bold">Key Metrics</h2>
+                        <h2 className="text-lg text-primary mb-6 font-bold">Key Metrics</h2>
                         <div className="grid grid-cols-3 gap-6">
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-gray-900">{totalProducts}</div>
-                                <div className="text-sm text-gray-600">Total Products</div>
+                                <div className="text-3xl font-bold text-primary">{totalProducts}</div>
+                                <div className="text-sm text-secondary-foreground">Total Products</div>
                                 <div className="flex items-center justify-center mt-1">
                                     <span className="text-xs text-green-600">+{totalProducts}</span>
                                     <TrendingUp className="w-3 h-3 text-green-600 ml-1"/>
@@ -92,8 +92,8 @@ export default async function DashboardPage() {
                             </div>
 
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-gray-900">{Number(totalValue).toFixed(0)}</div>
-                                <div className="text-sm text-gray-600">Total Value</div>
+                                <div className="text-3xl font-bold text-foreground">{Number(totalValue).toFixed(0)}</div>
+                                <div className="text-sm text-secondary-foreground">Total Value</div>
                                 <div className="flex items-center justify-center mt-1">
                                     <span className="text-xs text-green-600">+{Number(totalValue).toFixed(0)}</span>
                                     <DollarSign className="w-3 h-3 text-green-600 ml-1"/>
@@ -101,8 +101,8 @@ export default async function DashboardPage() {
                             </div>
 
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-gray-900">{lowStockProducts}</div>
-                                <div className="text-sm text-gray-600">Low Stock</div>
+                                <div className="text-3xl font-bold text-foreground">{lowStockProducts}</div>
+                                <div className="text-sm text-secondary-foreground">Low Stock</div>
                                 <div className="flex items-center justify-center mt-1">
                                     <span className="text-xs text-red-600">+{lowStockProducts}</span>
                                     <TrendingUp className="w-3 h-3 text-red-600 ml-1"/>
@@ -111,9 +111,9 @@ export default async function DashboardPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-lg border border-gray-200 p-6">
                         <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-lg text-gray-900 font-bold">Products Per Week</h2>
+                            <h2 className="text-lg text-foreground font-bold">Products Per Week</h2>
                         </div>
                         <div className="h-48">
                            <ProductCharts data={weeklyProductData}/>
@@ -122,9 +122,9 @@ export default async function DashboardPage() {
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     {/* Stock */}
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-lg border border-gray-200 p-6">
                         <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-lg text-gray-900 font-bold">Stock Levels</h2>
+                            <h2 className="text-lg text-foreground font-bold">Stock Levels</h2>
                         </div>
                         <div className="space-y-3">
                             {recent.map((product, key) => {
@@ -133,10 +133,10 @@ export default async function DashboardPage() {
                                 const textColors = ["text-red-600","text-yellow-600","text-green-600"];
                                 const stockIndex = stockLevel === "Out of Stock" ? 0 : stockLevel === "Low Stock" ? 1 : 2;
                                 return (
-                                    <div key={key} className="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                                    <div key={key} className="flex items-center justify-between p-3 rounded-lg bg-secondary">
                                         <div className="flex items-center space-x-3">
                                             <div className={`w-3 h-3 rounded-full ${bgColors[stockIndex]}`}></div>
-                                            <span className=" text-sm text-gray-800 font-medium">{product.name}</span>
+                                            <span className=" text-sm text-foreground font-medium">{product.name}</span>
                                         </div>
                                         <div className={`text-sm ${textColors[stockIndex]}`}>{product.quantity} units</div>
                                     </div>
@@ -145,9 +145,9 @@ export default async function DashboardPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-lg border border-gray-200 p-6">
                         <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-lg text-gray-900 font-bold">In Stock Percentage</h2>
+                            <h2 className="text-lg text-foreground font-bold">In Stock Percentage</h2>
                         </div>
                         <div className="flex items-center justify-center">
                             <div className="relative w-48 h-48">
@@ -161,29 +161,29 @@ export default async function DashboardPage() {
                                         )}%, #E5E7EB ${Math.max(0, Math.min(100, inStockPercentage))}% 100%)`,
                                     }}
                                 />
-                                <div className="absolute inset-4 rounded-full bg-white" />
+                                <div className="absolute inset-4 rounded-full bg-card" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-gray-900">{inStockPercentage} %</div> 
-                                        <div className="text-sm text-gray-600">In Stock</div>   
+                                        <div className="text-2xl font-bold text-foreground">{inStockPercentage} %</div> 
+                                        <div className="text-sm text-secondary-foreground">In Stock</div>   
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="mt-6 space-y-2">
-                            <div className="flex items-center justify-between text-sm text-gray-600">
+                            <div className="flex items-center justify-between text-sm text-secondary-foreground">
                                 <div className="flex items-center space-x-2">
                                     <div className= "w-3 h-3 rounded-full bg-green-200"/>
                                     <span>In Stock ({inStockPercentage})%</span>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-between text-sm text-gray-600">
+                            <div className="flex items-center justify-between text-sm text-secondary-foregroun">
                                 <div className="flex items-center space-x-2">
                                     <div className= "w-3 h-3 rounded-full bg-yellow-200"/>
                                     <span>Low Stock ({lowStockPercentage})%</span>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-between text-sm text-gray-600">
+                            <div className="flex items-center justify-between text-sm text-secondary-foregroun">
                                 <div className="flex items-center space-x-2">
                                     <div className= "w-3 h-3 rounded-full bg-red-200"/>
                                     <span>Out Of Stock ({outOfStockPercentage})%</span>

@@ -4,9 +4,12 @@ import { usePathname } from "next/navigation";
 import { AppSidebar } from "./app-sidebar";
 
 export default function AppSidebarClient() {
-  const restrictedPaths = ["/auth/login", "/onboarding"];
+  const restrictedPaths = ["/handler/sign-in", "/"];
   const pathname = usePathname() ?? "/";
 
+  if (restrictedPaths.includes(pathname)) {
+    return null;
+  }
   
 
   return <AppSidebar pathname={pathname} />;

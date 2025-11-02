@@ -11,17 +11,17 @@ export default async function AddProduct() {
                 <div className="mb-8">
                     <div className="flex items-center justify-between">
                         <div>
-                            <h1 className="text-2xl font-semibold text-gray-900">Add product</h1>
-                            <p>Add a new product to your inventory</p>
+                            <h1 className="text-2xl font-semibold text-foreground">Add product</h1>
+                            <p className="text-secondary-foreground">Add a new product to your inventory</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="max-w-2xl">
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-lg border border-gray-200 p-6">
                         <form className="space-y-6" action={createProduct}>
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                                     Product Name*
                                 </label>
                                 <input type="text"
@@ -35,7 +35,7 @@ export default async function AddProduct() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="price" className="block text-sm font-medium text-foreground mb-2">
                                         Price*
                                     </label>
                                     <input type="number"
@@ -49,7 +49,7 @@ export default async function AddProduct() {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                                         Quantity*
                                     </label>
                                     <input type="number"
@@ -64,7 +64,7 @@ export default async function AddProduct() {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="sku" className="block text-sm font-medium text-gray-700 mb-2">
+                                <label htmlFor="sku" className="block text-sm font-medium text-foreground mb-2">
                                         SKU
                                     </label>
                                     <input type="text"
@@ -76,7 +76,7 @@ export default async function AddProduct() {
                                     />
                             </div>
                             <div>
-                                <label htmlFor="lowStockThreshold" className="block text-sm font-medium text-gray-700 mb-2">
+                                <label htmlFor="lowStockThreshold" className="block text-sm font-medium text-foreground mb-2">
                                         Low Stock Threshold (Optional)
                                     </label>
                                     <input type="number"
@@ -90,8 +90,8 @@ export default async function AddProduct() {
                                     />
                             </div>
                             <div className="flex gap-5">
-                                <button type="submit" className="px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 text-white">Add product</button>
-                                <Link href="/inventory" className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-400">Cancel</Link>
+                                <button type="submit" className="px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 text-foreground">Add product</button>
+                                <Link href="/inventory" className="px-6 py-3 bg-secondary text-foreground rounded-lg hover:bg-gray-400">Cancel</Link>
                             </div>
                         </form>
                     </div>

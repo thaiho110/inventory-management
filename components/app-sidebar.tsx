@@ -4,13 +4,16 @@ import { BarChart3, ChartBar, Package, Plus, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { UserButton } from "@stackframe/stack";
+import { Toggle } from "@/components/ui/toggle"
 
 const navigation = [
         {
@@ -30,28 +33,35 @@ const navigation = [
             href: "/products",
 
             icon: Plus
-        },
-        {
-            name: "Settings",
-            href: "/settings",
-
-            icon: Settings
         }
     ];
 
 export function AppSidebar({pathname = "/"}:{pathname?: string}) {
+  
   return (
-      <Sidebar side="left" variant="sidebar" collapsible="offcanvas" >
+      <Sidebar side="left" variant="sidebar" collapsible="offcanvas">
+        <SidebarHeader>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <ChartBar className="h-6 w-6"/>
+              <span className="text-3xl font-semibold gap-2">IMS</span>
+            </div>
+            <Toggle
+              aria-label="Toggle bookmark"
+              size="sm"
+              variant="outline"
+              className="rounded-full"
+              >
+                {
+
+                }
+              </Toggle>
+            </div>
+        </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>
-              <div className="flex items-center justify-between">
-                <ChartBar className="h-6 w-6"/>
-                <span className="text-2xl">IMS</span>
-              </div>
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu className="mt-6">
+            <SidebarGroupContent className="mt-6">
+              <SidebarMenu>
                 {navigation.map((item) => {
                   const isCurrent = pathname === item.href || pathname.startsWith(item.href + "/")
                   return(
@@ -59,7 +69,7 @@ export function AppSidebar({pathname = "/"}:{pathname?: string}) {
                     <SidebarMenuButton asChild className={isCurrent ? "border rounded-lg bg-purple-300 " : ""}>
                       <a href={item.href}>
                         <item.icon />
-                        <span>{item.name}</span>
+                        <span className="font-medium">{item.name}</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -68,6 +78,11 @@ export function AppSidebar({pathname = "/"}:{pathname?: string}) {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+        <SidebarFooter>
+            <div className="flex items-center justify-between">
+                        <UserButton showUserInfo/>
+            </div>
+        </SidebarFooter>
       </Sidebar>
   )
 }

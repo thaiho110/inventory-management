@@ -26,7 +26,7 @@ function MainContentSkeleton() {
 
       {/* Key Metrics skeleton */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-card rounded-lg border border-gray-200 p-6">
           <Skeleton className="h-6 w-24 mb-6" />
           <div className="grid grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
@@ -42,7 +42,7 @@ function MainContentSkeleton() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-card rounded-lg border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-6">
             <Skeleton className="h-6 w-40" />
           </div>
@@ -53,7 +53,7 @@ function MainContentSkeleton() {
       {/* Bottom Row skeleton */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Stock levels skeleton */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-card rounded-lg border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-6">
             <Skeleton className="h-6 w-24" />
           </div>
@@ -74,7 +74,7 @@ function MainContentSkeleton() {
         </div>
 
         {/* Efficiency skeleton */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-card rounded-lg border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-6">
             <Skeleton className="h-6 w-20" />
           </div>
@@ -99,7 +99,7 @@ function MainContentSkeleton() {
 
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <MainContentSkeleton/>
     </div>
   );
