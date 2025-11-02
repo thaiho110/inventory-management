@@ -14,13 +14,13 @@ export default function Sidebar({currentPath = "/dashboard"}: {currentPath: stri
             name: "Inventory",
             href: "/inventory",
 
-            icon: Plus
+            icon: Package
         },
         {
             name: "Products",
             href: "/products",
 
-            icon: Package
+            icon: Plus
         },
         {
             name: "Settings",

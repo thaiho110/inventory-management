@@ -17,7 +17,7 @@ function LoadingSidebar() {
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: BarChart3 },
     { name: "Inventory", href: "/inventory", icon: Package },
-    { name: "Add Product", href: "/add-product", icon: Plus },
+    { name: "Products", href: "/products", icon: Plus },
     { name: "Settings", href: "/settings", icon: Settings },
   ];
 
@@ -26,14 +26,11 @@ function LoadingSidebar() {
       <div className="mb-8">
         <div className="flex items-center space-x-2 mb-4">
           <BarChart3 className="w-7 h-7" />
-          <span className="text-lg font-semibold">Inventory App</span>
+          <span className="text-lg font-semibold">IMS</span>
         </div>
       </div>
 
       <nav className="space-y-1">
-        <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-          Inventory
-        </div>
         {navigation.map((item) => {
           const IconComponent = item.icon;
           return (
