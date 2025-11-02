@@ -1,5 +1,4 @@
 import Pagination from '@/components/pagination';
-import Sidebar from '@/components/sidebar';
 import { deleteProduct} from '@/lib/actions/products';
 import { getCurrentUser } from '@/lib/auth';
 import {prisma} from '@/lib/prisma';
@@ -25,9 +24,8 @@ export default async function InventoryPage({searchParams}: {searchParams: Promi
 
 
     return (
-        <div className='min-h-screen bg-gray-50'>
-            <Sidebar currentPath='/inventory'/>
-            <main className='ml-64 p-8'>
+        <div className='min-h-screen max-w-full'>
+            <main className='p-8'>
                 <div className='mb-8'>
                     <div className='flex items-center justify-between'>
                         <div>

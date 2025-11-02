@@ -1,5 +1,4 @@
 import ProductCharts from "@/components/productcharts";
-import Sidebar from "@/components/sidebar";
 import { getCurrentUser } from "@/lib/auth";
 import {prisma} from "@/lib/prisma";
 import { DollarSign, TrendingUp } from "lucide-react";
@@ -66,9 +65,8 @@ export default async function DashboardPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gra-50">
-            <Sidebar currentPath={"/dashboard"}/>
-            <main className="ml-64 p-8">
+        <div className="min-h-screen max-w-full">        
+            <main className="p-8">
                 {/*Header*/}
                 <div className="mb-8">
                     <div className="flex items-center justify-between">
@@ -81,6 +79,7 @@ export default async function DashboardPage() {
                 {/* Key Metric */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        
                         <h2 className="text-lg text-gray-900 mb-6 font-bold">Key Metrics</h2>
                         <div className="grid grid-cols-3 gap-6">
                             <div className="text-center">

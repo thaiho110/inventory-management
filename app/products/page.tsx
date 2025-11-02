@@ -1,4 +1,4 @@
-import Sidebar from "@/components/sidebar";
+
 import { createProduct } from "@/lib/actions/products";
 import { getCurrentUser } from "@/lib/auth";
 import Link from "next/link";
@@ -6,9 +6,8 @@ import Link from "next/link";
 export default async function AddProduct() {
     const user = await getCurrentUser();
     return (
-        <div className="min-h-screen bg-gray-50">
-            <Sidebar currentPath="/products"/>
-            <main className="ml-64 p-8">
+        <div className="min-h-screen max-w-full">
+            <main className="p-8">
                 <div className="mb-8">
                     <div className="flex items-center justify-between">
                         <div>
