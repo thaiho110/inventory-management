@@ -1,6 +1,6 @@
 # Inventory Management System
 
-A inventory management app with basic management capabilities for users built with React 19, NextJS 15, TailwindCSS and Prisma 
+An inventory management app with basic management capabilities for users built with React 19, NextJS 15, TailwindCSS and Prisma 
 
 ## Basic features:
 - Adding new products
