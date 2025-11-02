@@ -44,8 +44,7 @@ export async function createProduct(formData:FormData) {
         await prisma.product.create({
             data: {...parsed.data, userID: user.id}
         });
-        redirect("/inventory")
-
+        redirect("/dashboard")
     } catch(error) {
         console.log(error)
     }

@@ -6,8 +6,8 @@ export default async function Settings() {
     const user = await getCurrentUser();
 
     return (
-       <div className="min-h-screen w-full">
-            <main className="p-8">
+       <div className="min-h-screen max-w-full">
+            <main className="p-8 max-w-full">
                 <div className="mb-8">
                     <div className="flex items-center justify-between">
                         <div>
@@ -18,7 +18,7 @@ export default async function Settings() {
                 </div>
                 <div className="max-w-6xl">
                     <div className="bg-white rounded-lg border border-gray-200 p-6">
-                        <AccountSettings fullPage/>
+                        <AccountSettings/>
                     </div>
                 </div>
             </main>
