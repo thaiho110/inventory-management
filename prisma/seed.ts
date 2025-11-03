@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-    const demoUserID = "";
+    const demoUserID = "5d905a86-562c-40ca-84f1-003e5c7b5ff2";
     const totalProducts = 50;
 
     await prisma.product.createMany({

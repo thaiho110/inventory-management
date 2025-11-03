@@ -1,9 +1,9 @@
 "use server";
-
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "../auth";
 import { z } from "zod";
 import {prisma} from "../prisma";
+import { revalidatePath } from "next/cache";
 
 const ProductSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -44,9 +44,12 @@ export async function createProduct(formData:FormData) {
         await prisma.product.create({
             data: {...parsed.data, userID: user.id}
         });
-        redirect("/dashboard")
+        revalidatePath("/inventory");
+        revalidatePath("/dashboard");
     } catch(error) {
         console.log(error)
     }
+
+    redirect("/inventory");
 
 }
