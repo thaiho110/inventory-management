@@ -8,7 +8,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import AppSidebarClient from "@/components/app-sidebar-client";
 import { ThemeProvider } from "next-themes";
 import { Providers } from "./providers";
-
+import { Analytics } from "@vercel/analytics/next"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,6 +39,7 @@ export default function RootLayout({
           <Providers>
             <main className="w-full">
               {children}
+              <Analytics />
             </main>
           </Providers>
         </body>
