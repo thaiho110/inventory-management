@@ -4,10 +4,9 @@ import { stackClientApp } from "../stack/client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import AppSidebarClient from "@/components/app-sidebar-client";
 import { ThemeProvider } from "next-themes";
-
+import {Analytics} from "@vercel/analytics/react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,6 +47,7 @@ export default function RootLayout({
                     <main className="w-full">
                       <SidebarTrigger />
                         {children}
+                        <Analytics />
                     </main>
                   </SidebarProvider>
                 </StackTheme>
