@@ -1,7 +1,7 @@
 import ProductCharts from "@/components/productcharts";
 import { getCurrentUser } from "@/lib/auth";
 import {prisma} from "@/lib/prisma";
-import { DollarSign, TrendingUp } from "lucide-react";
+import { DollarSign, Package, TrendingUp } from "lucide-react";
 
 export default async function DashboardPage() {
 
@@ -65,134 +65,157 @@ export default async function DashboardPage() {
     }
 
     return (
-        <div className="min-h-screen max-w-full">        
-            <main className="p-8">
+        <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900">
+            <div className="space-y-8">
                 {/*Header*/}
-                <div className="mb-8">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
-                            <p className="text-sm text-secondary-foreground">Welcome back! Here is the overview of your inventory</p>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+                        <p className="text-gray-600 dark:text-gray-400 mt-2">Welcome back! Here is the overview of your inventory</p>
+                    </div>
+                </div>
+
+                {/* Key Metrics Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Total Products Card */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Products</h3>
+                            <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                                <Package className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{totalProducts}</div>
+                        <div className="flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4 text-green-600" />
+                            <span className="text-xs text-green-600">+{totalProducts} items</span>
+                        </div>
+                    </div>
+
+                    {/* Total Value Card */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Value</h3>
+                            <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                                <DollarSign className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">${Number(totalValue).toFixed(0)}</div>
+                        <div className="flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4 text-green-600" />
+                            <span className="text-xs text-green-600">Inventory value</span>
+                        </div>
+                    </div>
+
+                    {/* Low Stock Card */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">Low Stock Alert</h3>
+                            <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                                <TrendingUp className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{lowStockProducts}</div>
+                        <div className="flex items-center gap-2">
+                            <span className="text-xs text-orange-600">Items need attention</span>
                         </div>
                     </div>
                 </div>
-                {/* Key Metric */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                    <div className="bg-card rounded-lg border border-gray-200 p-6">
-                        
-                        <h2 className="text-lg text-primary mb-6 font-bold">Key Metrics</h2>
-                        <div className="grid grid-cols-3 gap-6">
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-primary">{totalProducts}</div>
-                                <div className="text-sm text-secondary-foreground">Total Products</div>
-                                <div className="flex items-center justify-center mt-1">
-                                    <span className="text-xs text-green-600">+{totalProducts}</span>
-                                    <TrendingUp className="w-3 h-3 text-green-600 ml-1"/>
-                                </div>
-                            </div>
 
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-foreground">{Number(totalValue).toFixed(0)}</div>
-                                <div className="text-sm text-secondary-foreground">Total Value</div>
-                                <div className="flex items-center justify-center mt-1">
-                                    <span className="text-xs text-green-600">+{Number(totalValue).toFixed(0)}</span>
-                                    <DollarSign className="w-3 h-3 text-green-600 ml-1"/>
-                                </div>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-foreground">{lowStockProducts}</div>
-                                <div className="text-sm text-secondary-foreground">Low Stock</div>
-                                <div className="flex items-center justify-center mt-1">
-                                    <span className="text-xs text-red-600">+{lowStockProducts}</span>
-                                    <TrendingUp className="w-3 h-3 text-red-600 ml-1"/>
-                                </div>
-                            </div>
+                {/* Charts Row */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Weekly Products Chart */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
+                        <div className="mb-6">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Products Per Week</h2>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">12-week trend</p>
                         </div>
-                    </div>
-
-                    <div className="bg-card rounded-lg border border-gray-200 p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-lg text-foreground font-bold">Products Per Week</h2>
-                        </div>
-                        <div className="h-48">
+                        <div className="h-64">
                            <ProductCharts data={weeklyProductData}/>
                         </div>
                     </div>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                    {/* Stock */}
-                    <div className="bg-card rounded-lg border border-gray-200 p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-lg text-foreground font-bold">Stock Levels</h2>
-                        </div>
-                        <div className="space-y-3">
-                            {recent.map((product, key) => {
-                                const stockLevel = product.quantity === 0 ? "Out of Stock" : product.quantity <= (product.lowStockThreshold ?? 5) ? "Low Stock" : "In Stock";
-                                const bgColors = ["bg-red-600","bg-yellow-600","bg-green-600"];
-                                const textColors = ["text-red-600","text-yellow-600","text-green-600"];
-                                const stockIndex = stockLevel === "Out of Stock" ? 0 : stockLevel === "Low Stock" ? 1 : 2;
-                                return (
-                                    <div key={key} className="flex items-center justify-between p-3 rounded-lg bg-secondary">
-                                        <div className="flex items-center space-x-3">
-                                            <div className={`w-3 h-3 rounded-full ${bgColors[stockIndex]}`}></div>
-                                            <span className=" text-sm text-foreground font-medium">{product.name}</span>
-                                        </div>
-                                        <div className={`text-sm ${textColors[stockIndex]}`}>{product.quantity} units</div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
 
-                    <div className="bg-card rounded-lg border border-gray-200 p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-lg text-foreground font-bold">In Stock Percentage</h2>
+                    {/* Stock Distribution */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
+                        <div className="mb-6">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Stock Distribution</h2>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">By status</p>
                         </div>
-                        <div className="flex items-center justify-center">
+                        <div className="flex items-center justify-center h-64">
                             <div className="relative w-48 h-48">
-                                <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
+                                <div className="absolute inset-0 rounded-full border-8 border-gray-200 dark:border-slate-700"></div>
                                 <div
                                     className={`absolute inset-0 rounded-full`}
                                     style={{
                                         background: `conic-gradient(#10B981 ${Math.max(
                                             0,
                                             Math.min(100, inStockPercentage)
-                                        )}%, #E5E7EB ${Math.max(0, Math.min(100, inStockPercentage))}% 100%)`,
+                                        )}%, #F59E0B ${Math.max(0, Math.min(100, inStockPercentage))}% ${Math.max(0, Math.min(100, inStockPercentage + lowStockPercentage))}%, #EF4444 ${Math.max(0, Math.min(100, inStockPercentage + lowStockPercentage))}% 100%)`,
                                     }}
                                 />
-                                <div className="absolute inset-4 rounded-full bg-card" />
+                                <div className="absolute inset-4 rounded-full bg-white dark:bg-slate-800" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-foreground">{inStockPercentage} %</div> 
-                                        <div className="text-sm text-secondary-foreground">In Stock</div>   
+                                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{inStockPercentage}%</div> 
+                                        <div className="text-xs text-gray-600 dark:text-gray-400">In Stock</div>   
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-6 space-y-2">
-                            <div className="flex items-center justify-between text-sm text-secondary-foreground">
-                                <div className="flex items-center space-x-2">
-                                    <div className= "w-3 h-3 rounded-full bg-green-200"/>
-                                    <span>In Stock ({inStockPercentage})%</span>
+                        <div className="mt-6 space-y-3">
+                            <div className="flex items-center justify-between text-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                    <span className="text-gray-700 dark:text-gray-300">In Stock</span>
                                 </div>
+                                <span className="font-medium text-gray-900 dark:text-white">{inStockPercentage}%</span>
                             </div>
-                            <div className="flex items-center justify-between text-sm text-secondary-foregroun">
-                                <div className="flex items-center space-x-2">
-                                    <div className= "w-3 h-3 rounded-full bg-yellow-200"/>
-                                    <span>Low Stock ({lowStockPercentage})%</span>
+                            <div className="flex items-center justify-between text-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                                    <span className="text-gray-700 dark:text-gray-300">Low Stock</span>
                                 </div>
+                                <span className="font-medium text-gray-900 dark:text-white">{lowStockPercentage}%</span>
                             </div>
-                            <div className="flex items-center justify-between text-sm text-secondary-foregroun">
-                                <div className="flex items-center space-x-2">
-                                    <div className= "w-3 h-3 rounded-full bg-red-200"/>
-                                    <span>Out Of Stock ({outOfStockPercentage})%</span>
+                            <div className="flex items-center justify-between text-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <span className="text-gray-700 dark:text-gray-300">Out of Stock</span>
                                 </div>
+                                <span className="font-medium text-gray-900 dark:text-white">{outOfStockPercentage}%</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+
+                {/* Recent Stock Levels */}
+                <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
+                    <div className="mb-6">
+                        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Products</h2>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Latest items added to inventory</p>
+                    </div>
+                    <div className="space-y-3">
+                        {recent.map((product, key) => {
+                            const stockLevel = product.quantity === 0 ? "Out of Stock" : product.quantity <= (product.lowStockThreshold ?? 5) ? "Low Stock" : "In Stock";
+                            const bgColor = stockLevel === "Out of Stock" ? "bg-red-100 dark:bg-red-900/30" : stockLevel === "Low Stock" ? "bg-amber-100 dark:bg-amber-900/30" : "bg-green-100 dark:bg-green-900/30";
+                            const textColor = stockLevel === "Out of Stock" ? "text-red-700 dark:text-red-400" : stockLevel === "Low Stock" ? "text-amber-700 dark:text-amber-400" : "text-green-700 dark:text-green-400";
+                            const dotColor = stockLevel === "Out of Stock" ? "bg-red-500" : stockLevel === "Low Stock" ? "bg-amber-500" : "bg-green-500";
+                            
+                            return (
+                                <div key={key} className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                                    <div className="flex items-center gap-3 flex-1">
+                                        <div className={`w-3 h-3 rounded-full ${dotColor}`}></div>
+                                        <span className="font-medium text-gray-900 dark:text-white">{product.name}</span>
+                                    </div>
+                                    <div className={`px-3 py-1 rounded-full text-sm font-medium ${bgColor} ${textColor}`}>
+                                        {product.quantity} units - {stockLevel}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -18,19 +18,16 @@ const navigation = [
         {
             name: "Dashboard",
             href: "/dashboard",
-
             icon: BarChart3
         },
         {
             name: "Inventory",
             href: "/inventory",
-
             icon: Package
         },
         {
             name: "Products",
             href: "/products",
-
             icon: Plus
         }
     ];
@@ -38,27 +35,36 @@ const navigation = [
 export function AppSidebar({pathname = "/"}:{pathname?: string}) {
 
   return (
-      <Sidebar side="left" variant="sidebar" collapsible="offcanvas">
-        <SidebarHeader>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <ChartBar className="h-6 w-6"/>
-              <span className="text-3xl font-semibold gap-2">IMS</span>
+      <Sidebar side="left" variant="sidebar" collapsible="offcanvas" className="border-r border-gray-200 dark:border-slate-800">
+        <SidebarHeader className="border-b border-gray-200 dark:border-slate-800 py-4">
+          <div className="flex items-center justify-between px-2">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg">
+                <ChartBar className="h-5 w-5 text-white"/>
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">IMS</span>
             </div>
-            </div>
+          </div>
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent className="px-3 py-6">
           <SidebarGroup>
-            <SidebarGroupContent className="mt-6">
-              <SidebarMenu>
+            <SidebarGroupContent>
+              <SidebarMenu className="gap-2">
                 {navigation.map((item) => {
                   const isCurrent = pathname === item.href || pathname.startsWith(item.href + "/")
                   return(
-                  <SidebarMenuItem key={item.name} className="hover:bg-gray-300 hover:border rounded-lg">
-                    <SidebarMenuButton asChild className={isCurrent ? "border rounded-lg bg-purple-300 " : ""}>
-                      <a href={item.href}>
-                        <item.icon />
-                        <span className="font-medium">{item.name}</span>
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton 
+                      asChild 
+                      className={`rounded-lg transition-all duration-200 ${
+                        isCurrent 
+                          ? "bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-blue-300 font-medium shadow-sm" 
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
+                      }`}
+                    >
+                      <a href={item.href} className="flex items-center gap-3 px-3 py-2">
+                        <item.icon className="w-5 h-5" />
+                        <span>{item.name}</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -67,9 +73,9 @@ export function AppSidebar({pathname = "/"}:{pathname?: string}) {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter>
-            <div className="flex items-center justify-between">
-                        <UserButton showUserInfo/>
+        <SidebarFooter className="border-t border-gray-200 dark:border-slate-800 py-4">
+            <div className="flex items-center justify-center w-full">
+              <UserButton showUserInfo />
             </div>
         </SidebarFooter>
       </Sidebar>
